@@ -1,21 +1,35 @@
 import { useState } from "react";
+
 import { projects } from "../data/projectData";
+
 import ProjectCard from "../components/ProjectCard/ProjectCard";
+
+import Lightbox from "../components/Lightbox/Lightbox";
+
+import type { Project } from "../data/projectData";
+
 import styles from "./Projects.module.css";
 
 function Projects() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] =
+    useState("All");
+
+  const [selectedProject, setSelectedProject] =
+    useState<Project | null>(null);
 
   const categories = [
     "All",
-    ...new Set(projects.map((project) => project.category)),
+    ...new Set(
+      projects.map((project) => project.category)
+    ),
   ];
 
   const filteredProjects =
     activeCategory === "All"
       ? projects
       : projects.filter(
-          (project) => project.category === activeCategory
+          (project) =>
+            project.category === activeCategory
         );
 
   return (
@@ -52,8 +66,12 @@ function Projects() {
                   ? styles.active
                   : ""
               }`}
-              onClick={() => setActiveCategory(category)}
-              aria-pressed={activeCategory === category}
+              onClick={() =>
+                setActiveCategory(category)
+              }
+              aria-pressed={
+                activeCategory === category
+              }
             >
               {category}
             </button>
@@ -65,6 +83,7 @@ function Projects() {
             <ProjectCard
               key={project.id}
               project={project}
+              onImageClick={setSelectedProject}
             />
           ))}
         </div>
@@ -75,6 +94,14 @@ function Projects() {
           </p>
         )}
       </div>
+
+      {selectedProject && (
+        <Lightbox
+          image={selectedProject.image}
+          title={selectedProject.title}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </section>
   );
 }

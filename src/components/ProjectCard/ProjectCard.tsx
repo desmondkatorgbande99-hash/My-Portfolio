@@ -3,19 +3,30 @@ import type { Project } from "../../data/projectData";
 
 interface ProjectCardProps {
   project: Project;
+  onImageClick: (project: Project) => void;
 }
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({
+  project,
+  onImageClick,
+}: ProjectCardProps) {
   return (
     <article className={styles.card}>
-      <div className={styles.imageWrapper}>
-        <img
-          src={project.image}
-          alt={`${project.title} project preview`}
-          className={styles.image}
-          loading="lazy"
-        />
-      </div>
+      <button
+        type="button"
+        className={styles.imageButton}
+        onClick={() => onImageClick(project)}
+        aria-label={`View larger image of ${project.title}`}
+      >
+        <div className={styles.imageWrapper}>
+          <img
+            src={project.image}
+            alt={`${project.title} project preview`}
+            className={styles.image}
+            loading="lazy"
+          />
+        </div>
+      </button>
 
       <div className={styles.content}>
         <p className={styles.category}>
