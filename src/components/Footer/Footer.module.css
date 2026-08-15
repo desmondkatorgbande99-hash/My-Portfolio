@@ -1,0 +1,169 @@
+.footer {
+  border-top: 1px solid var(--color-border);
+
+  background-color: var(--color-background);
+}
+
+
+/* =================================
+   TOP
+================================= */
+
+.top {
+  display: grid;
+
+  grid-template-columns:
+    2fr 1fr 1fr;
+
+  gap: 60px;
+
+  padding-block: 70px;
+}
+
+.introduction {
+  max-width: 420px;
+}
+
+.logo {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  font-size: var(--font-size-lg);
+
+  font-weight: 800;
+
+  letter-spacing: -0.04em;
+}
+
+.introduction p {
+  max-width: 380px;
+
+  color: var(--color-text-muted);
+
+  font-size: var(--font-size-sm);
+
+  line-height: 1.7;
+}
+
+
+/* =================================
+   NAVIGATION
+================================= */
+
+.navigationTitle {
+  margin-bottom: 18px;
+
+  color: var(--color-text-muted);
+
+  font-size: var(--font-size-xs);
+
+  font-weight: 700;
+
+  letter-spacing: 0.15em;
+}
+
+.navigation ul,
+.connect ul {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.navigation a,
+.connect a {
+  color: var(--color-text);
+
+  font-size: var(--font-size-sm);
+
+  transition:
+    color var(--transition-fast);
+}
+
+.navigation a:hover,
+.connect a:hover {
+  color: var(--color-text-muted);
+}
+
+
+/* =================================
+   BOTTOM
+================================= */
+
+.bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-block: 22px;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.bottom p {
+  color: var(--color-text-muted);
+
+  font-size: var(--font-size-xs);
+}
+
+.backToTop {
+  font-size: var(--font-size-xs);
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.backToTop:hover {
+  text-decoration: underline;
+
+  text-underline-offset: 4px;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 900px) {
+  .top {
+    grid-template-columns: 1.5fr 1fr 1fr;
+
+    gap: 40px;
+
+    padding-block: 60px;
+  }
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+  .top {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+
+    padding-block: 50px;
+  }
+
+  .introduction {
+    max-width: 100%;
+  }
+
+  .bottom {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 14px;
+  }
+}

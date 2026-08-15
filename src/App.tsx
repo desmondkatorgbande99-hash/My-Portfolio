@@ -3,6 +3,7 @@ import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import Skills from "./components/Skills/skills";
 import Projects from "./Projects/Projects";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <Skills />
         <Projects />
       </main>
+
+      <Footer />
     </>
   );
 }
