@@ -52,6 +52,14 @@
    DESKTOP NAVIGATION
 ================================= */
 
+.navigation {
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+}
+
 .navigation ul {
   display: flex;
 
@@ -104,6 +112,51 @@
   transform: scaleX(1);
 
   transform-origin: left;
+}
+
+
+/* =================================
+   RESUME LINK
+================================= */
+
+.resumeLink {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 9px 16px;
+
+  border: 1px solid var(--color-text);
+
+  border-radius: var(--radius-full);
+
+  background-color: var(--color-text);
+
+  color: var(--color-background) !important;
+
+  font-size: var(--font-size-sm);
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.resumeLink::after {
+  display: none;
+}
+
+.resumeLink:hover {
+  color: var(--color-background) !important;
+
+  opacity: 0.85;
+
+  transform: translateY(-1px);
 }
 
 
@@ -190,7 +243,7 @@
 
 
 /* =================================
-   MOBILE
+   MOBILE NAVIGATION
 ================================= */
 
 @media (max-width: 768px) {
@@ -208,6 +261,8 @@
     inset: 68px 0 0;
 
     z-index: 101;
+
+    display: block;
 
     padding: 32px 24px;
 
@@ -241,6 +296,8 @@
     align-items: flex-start;
 
     gap: 0;
+
+    width: 100%;
   }
 
   .navigation li {
@@ -264,6 +321,31 @@
   .navigation a::after {
     display: none;
   }
+
+
+  /* ===============================
+     MOBILE RESUME
+  =============================== */
+
+  .resumeLink {
+    display: flex;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    margin-top: 24px;
+
+    padding: 14px 18px;
+
+    color: var(--color-background) !important;
+
+    text-align: center;
+  }
+
+  .resumeLink:hover {
+    color: var(--color-background) !important;
+  }
 }
 
 
@@ -278,5 +360,9 @@
 
   .navigation a {
     font-size: var(--font-size-lg);
+  }
+
+  .resumeLink {
+    padding: 13px 16px;
   }
 }

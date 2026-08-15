@@ -252,6 +252,12 @@
     padding-block: 60px;
   }
 
+  @media (max-width: 600px) {
+    .actions {
+    align-items: column;
+  }
+  }
+
   .heroContent {
     gap: 45px;
   }
@@ -284,4 +290,53 @@
   .visualFrame {
     width: min(100%, 260px);
   }
+}
+.resumeButton {
+  width: 100%;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 13px 22px;
+
+  box-sizing: border-box;
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-full);
+
+  background-color: transparent;
+
+  color: var(--color-text);
+
+  font-size: var(--font-size-sm);
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.resumeButton:hover {
+  background-color: var(--color-text);
+
+  border-color: var(--color-text);
+
+  color: var(--color-background);
+
+  transform: translateY(-2px);
+}
+
+.resumeButton:focus-visible {
+  outline: 2px solid var(--color-text);
+
+  outline-offset: 4px;
 }

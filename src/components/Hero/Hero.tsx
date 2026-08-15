@@ -38,6 +38,14 @@ function Hero() {
               >
                 Let's Talk
               </a>
+
+              <a
+    href="/documents/Desmond-Gbande-Resume.pdf"
+    download="Desmond-Gbande-Resume.pdf"
+    className={styles.resumeButton}
+  >
+    Download Resume
+  </a>
             </div>
           </div>
 

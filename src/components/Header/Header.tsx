@@ -35,6 +35,10 @@ function Header() {
     setIsMenuOpen((previous) => !previous);
   };
 
+  /*
+   * Close the mobile menu when the Escape key
+   * is pressed.
+   */
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -42,7 +46,10 @@ function Header() {
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
 
     return () => {
       document.removeEventListener(
@@ -52,6 +59,10 @@ function Header() {
     };
   }, []);
 
+  /*
+   * Prevent the page behind the mobile navigation
+   * from scrolling while the menu is open.
+   */
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -67,6 +78,10 @@ function Header() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.container}`}>
+        {/* ================================
+            LOGO
+        ================================= */}
+
         <a
           href="#home"
           className={styles.logo}
@@ -75,6 +90,10 @@ function Header() {
         >
           DESMOND
         </a>
+
+        {/* ================================
+            MOBILE MENU BUTTON
+        ================================= */}
 
         <button
           type="button"
@@ -100,10 +119,16 @@ function Header() {
           </span>
         </button>
 
+        {/* ================================
+            NAVIGATION
+        ================================= */}
+
         <nav
           id="main-navigation"
           className={`${styles.navigation} ${
-            isMenuOpen ? styles.navigationOpen : ""
+            isMenuOpen
+              ? styles.navigationOpen
+              : ""
           }`}
           aria-label="Main navigation"
         >
@@ -119,6 +144,19 @@ function Header() {
               </li>
             ))}
           </ul>
+
+          {/* ==============================
+              RESUME
+          =============================== */}
+
+          <a
+            href="/documents/Desmond-Gbande-Resume.pdf"
+            download="Desmond-Gbande-Resume.pdf"
+            className={styles.resumeLink}
+            onClick={closeMenu}
+          >
+            Resume
+          </a>
         </nav>
       </div>
     </header>
