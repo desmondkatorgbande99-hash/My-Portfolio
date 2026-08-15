@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 
 const navItems = [
@@ -24,40 +25,100 @@ const navItems = [
 ];
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen((previous) => !previous);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   return (
     <header className={styles.header}>
-      <div className="container">
+      <div className={`container ${styles.container}`}>
+        <a
+          href="#home"
+          className={styles.logo}
+          onClick={closeMenu}
+          aria-label="Desmond home"
+        >
+          DESMOND
+        </a>
+
+        <button
+          type="button"
+          className={styles.menuButton}
+          onClick={toggleMenu}
+          aria-expanded={isMenuOpen}
+          aria-controls="main-navigation"
+          aria-label={
+            isMenuOpen
+              ? "Close navigation menu"
+              : "Open navigation menu"
+          }
+        >
+          <span
+            className={`${styles.menuIcon} ${
+              isMenuOpen ? styles.open : ""
+            }`}
+            aria-hidden="true"
+          >
+            <span />
+            <span />
+            <span />
+          </span>
+        </button>
+
         <nav
-          className={styles.nav}
+          id="main-navigation"
+          className={`${styles.navigation} ${
+            isMenuOpen ? styles.navigationOpen : ""
+          }`}
           aria-label="Main navigation"
         >
-          <a
-            href="#home"
-            className={styles.logo}
-            aria-label="Go to homepage"
-          >
-            DESMOND
-          </a>
-
-          <ul className={styles.navList}>
+          <ul>
             {navItems.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
-                  className={styles.navLink}
+                  onClick={closeMenu}
                 >
                   {item.label}
                 </a>
               </li>
             ))}
           </ul>
-
-          <a
-            href="#contact"
-            className={styles.cta}
-          >
-            Let's Talk
-          </a>
         </nav>
       </div>
     </header>
