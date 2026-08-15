@@ -1,14 +1,20 @@
+import Header from "./components/Header/Header";
+
 function App() {
   return (
-    <main>
-      <div className="container">
-        <h1>Portfolio</h1>
+    <>
+      <Header />
 
-        <p>
-          Foundation setup is working.
-        </p>
-      </div>
-    </main>
+      <main id="home">
+        <div className="container">
+          <h1>Portfolio</h1>
+
+          <p>
+            Foundation setup is working.
+          </p>
+        </div>
+      </main>
+    </>
   );
 }
 
