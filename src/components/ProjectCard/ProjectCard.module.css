@@ -1,0 +1,157 @@
+.card {
+  overflow: hidden;
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-md);
+
+  background-color: var(--color-surface);
+
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+
+  box-shadow: var(--shadow-md);
+}
+
+
+/* =================================
+   IMAGE
+================================= */
+
+.imageWrapper {
+  overflow: hidden;
+
+  aspect-ratio: 16 / 10;
+
+  background-color: var(--color-background);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform var(--transition-normal);
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+
+/* =================================
+   CONTENT
+================================= */
+
+.content {
+  padding: 28px;
+}
+
+.category {
+  margin-bottom: 10px;
+
+  color: var(--color-text-muted);
+
+  font-size: var(--font-size-xs);
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.content h3 {
+  margin-bottom: 14px;
+
+  font-size: var(--font-size-2xl);
+
+  letter-spacing: -0.03em;
+}
+
+.description {
+  margin-bottom: 22px;
+
+  color: var(--color-text-muted);
+
+  font-size: var(--font-size-sm);
+
+  line-height: 1.65;
+}
+
+
+/* =================================
+   TECHNOLOGIES
+================================= */
+
+.technologies {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+}
+
+.technologies li {
+  padding: 6px 10px;
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-full);
+
+  background-color: var(--color-background);
+
+  font-size: var(--font-size-xs);
+
+  font-weight: 600;
+}
+
+
+/* =================================
+   LINKS
+================================= */
+
+.links {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  margin-top: 24px;
+}
+
+.links a {
+  font-size: var(--font-size-sm);
+
+  font-weight: 700;
+
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.links a:hover {
+  text-decoration-thickness: 2px;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+  .content {
+    padding: 22px;
+  }
+
+  .content h3 {
+    font-size: var(--font-size-xl);
+  }
+}
