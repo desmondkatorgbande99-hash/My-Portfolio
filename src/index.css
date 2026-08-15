@@ -1,0 +1,232 @@
+:root {
+  /* ================================
+     COLORS
+  ================================= */
+
+  --color-background: #ffffff;
+  --color-surface: #f7f7f8;
+  --color-text: #111111;
+  --color-text-muted: #666666;
+  --color-border: #e5e5e5;
+
+  --color-primary: #111111;
+  --color-primary-hover: #333333;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+
+  /* ================================
+     TYPOGRAPHY
+  ================================= */
+
+  --font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+  --font-size-5xl: 3rem;
+
+  --line-height-body: 1.6;
+  --line-height-heading: 1.1;
+
+
+  /* ================================
+     LAYOUT
+  ================================= */
+
+  --container-width: 1200px;
+
+  --section-spacing: 100px;
+
+
+  /* ================================
+     SPACING
+  ================================= */
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+
+  /* ================================
+     BORDER RADIUS
+  ================================= */
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+
+  /* ================================
+     SHADOWS
+  ================================= */
+
+  --shadow-sm:
+    0 2px 8px rgba(0, 0, 0, 0.06);
+
+  --shadow-md:
+    0 8px 24px rgba(0, 0, 0, 0.08);
+
+
+  /* ================================
+     TRANSITIONS
+  ================================= */
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+
+/* ================================
+   RESET
+================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-body);
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+button {
+  cursor: pointer;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+ul,
+ol {
+  list-style: none;
+}
+
+
+/* ================================
+   RESPONSIVE CONTAINER
+================================= */
+
+.container {
+  width: min(
+    calc(100% - 40px),
+    var(--container-width)
+  );
+
+  margin-inline: auto;
+}
+
+
+/* ================================
+   SECTION
+================================= */
+
+section {
+  padding-block: var(--section-spacing);
+}
+
+
+/* ================================
+   ACCESSIBILITY
+================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+
+/* ================================
+   TABLET
+================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --section-spacing: 70px;
+  }
+
+  .container {
+    width: min(
+      calc(100% - 32px),
+      var(--container-width)
+    );
+  }
+}
+
+
+/* ================================
+   MOBILE
+================================= */
+
+@media (max-width: 480px) {
+  :root {
+    --section-spacing: 55px;
+  }
+
+  .container {
+    width: min(
+      calc(100% - 24px),
+      var(--container-width)
+    );
+  }
+}
