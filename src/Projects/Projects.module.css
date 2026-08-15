@@ -48,6 +48,73 @@
   line-height: 1.7;
 }
 
+/* =================================
+   FILTERS
+================================= */
+
+.filters {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-bottom: 40px;
+}
+
+.filterButton {
+  padding: 10px 18px;
+
+  border: 1px solid var(--color-border);
+
+  border-radius: var(--radius-full);
+
+  background-color: transparent;
+
+  color: var(--color-text);
+
+  font-family: inherit;
+
+  font-size: var(--font-size-sm);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.filterButton:hover {
+  background-color: var(--color-surface);
+}
+
+.filterButton.active {
+  background-color: var(--color-text);
+
+  border-color: var(--color-text);
+
+  color: var(--color-background);
+}
+
+
+/* =================================
+   EMPTY STATE
+================================= */
+
+.emptyState {
+  padding: 60px 20px;
+
+  border: 1px dashed var(--color-border);
+
+  border-radius: var(--radius-md);
+
+  color: var(--color-text-muted);
+
+  text-align: center;
+}
 
 /* =================================
    PROJECT GRID
@@ -94,4 +161,15 @@
   .intro {
     font-size: var(--font-size-base);
   }
+}
+.filters {
+  gap: 8px;
+
+  margin-bottom: 30px;
+}
+
+.filterButton {
+  padding: 8px 14px;
+
+  font-size: var(--font-size-xs);
 }
