@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import styles from "./Header.module.css";
 
 const navItems = [
@@ -27,6 +28,12 @@ const navItems = [
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const menuButtonRef =
+    useRef<HTMLButtonElement>(null);
+
+  const navigationRef =
+    useRef<HTMLElement>(null);
+
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
@@ -36,13 +43,17 @@ function Header() {
   };
 
   /*
-   * Close the mobile menu when the Escape key
-   * is pressed.
+   * Close mobile navigation with Escape
+   * and return focus to the menu button.
    */
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && isMenuOpen) {
         closeMenu();
+
+        requestAnimationFrame(() => {
+          menuButtonRef.current?.focus();
+        });
       }
     };
 
@@ -57,11 +68,11 @@ function Header() {
         handleKeyDown
       );
     };
-  }, []);
+  }, [isMenuOpen]);
 
   /*
-   * Prevent the page behind the mobile navigation
-   * from scrolling while the menu is open.
+   * Prevent background scrolling while
+   * the mobile menu is open.
    */
   useEffect(() => {
     if (isMenuOpen) {
@@ -75,10 +86,73 @@ function Header() {
     };
   }, [isMenuOpen]);
 
+  /*
+   * Close the mobile menu when the viewport
+   * becomes desktop-sized.
+   */
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768 && isMenuOpen) {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener(
+      "resize",
+      handleResize
+    );
+
+    return () => {
+      window.removeEventListener(
+        "resize",
+        handleResize
+      );
+    };
+  }, [isMenuOpen]);
+
+  /*
+   * Close the mobile menu when clicking
+   * outside the navigation.
+   */
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    const handleClickOutside = (
+      event: MouseEvent
+    ) => {
+      const target = event.target as Node;
+
+      if (
+        navigationRef.current &&
+        !navigationRef.current.contains(target) &&
+        menuButtonRef.current &&
+        !menuButtonRef.current.contains(target)
+      ) {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener(
+      "mousedown",
+      handleClickOutside
+    );
+
+    return () => {
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+    };
+  }, [isMenuOpen]);
+
   return (
     <header className={styles.header}>
-      <div className={`container ${styles.container}`}>
-        {/* ================================
+      <div
+        className={`container ${styles.container}`}
+      >
+        {/* =================================
             LOGO
         ================================= */}
 
@@ -91,11 +165,12 @@ function Header() {
           DESMOND
         </a>
 
-        {/* ================================
+        {/* =================================
             MOBILE MENU BUTTON
         ================================= */}
 
         <button
+          ref={menuButtonRef}
           type="button"
           className={styles.menuButton}
           onClick={toggleMenu}
@@ -119,11 +194,12 @@ function Header() {
           </span>
         </button>
 
-        {/* ================================
+        {/* =================================
             NAVIGATION
         ================================= */}
 
         <nav
+          ref={navigationRef}
           id="main-navigation"
           className={`${styles.navigation} ${
             isMenuOpen
@@ -145,18 +221,22 @@ function Header() {
             ))}
           </ul>
 
-          {/* ==============================
-              RESUME
-          =============================== */}
+          {/* =================================
+              ACTIONS
+          ================================= */}
 
-          <a
-            href="/documents/Desmond-Gbande-Resume.pdf"
-            download="Desmond-Gbande-Resume.pdf"
-            className={styles.resumeLink}
-            onClick={closeMenu}
-          >
-            Resume
-          </a>
+          <div className={styles.actions}>
+            <ThemeToggle />
+
+            <a
+              href="/documents/Desmond-Gbande-Resume.pdf"
+              download="Desmond-Gbande-Resume.pdf"
+              className={styles.resumeLink}
+              onClick={closeMenu}
+            >
+              Resume
+            </a>
+          </div>
         </nav>
       </div>
     </header>

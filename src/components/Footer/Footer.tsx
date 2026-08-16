@@ -29,21 +29,34 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <div className="container">
+        {/* =================================
+            FOOTER TOP
+        ================================= */}
+
         <div className={styles.top}>
+          {/* =================================
+              INTRODUCTION
+          ================================= */}
+
           <div className={styles.introduction}>
             <a
               href="#home"
               className={styles.logo}
-              aria-label="Back to homepage"
+              aria-label="Desmond - Back to homepage"
             >
               DESMOND
             </a>
 
             <p>
-              Software engineer focused on building modern,
-              responsive, and practical digital solutions.
+              Software engineer focused on building
+              modern, responsive, and practical digital
+              solutions.
             </p>
           </div>
+
+          {/* =================================
+              NAVIGATION
+          ================================= */}
 
           <nav
             className={styles.navigation}
@@ -62,6 +75,10 @@ function Footer() {
             </ul>
           </nav>
 
+          {/* =================================
+              CONNECT
+          ================================= */}
+
           <div className={styles.connect}>
             <p className={styles.navigationTitle}>
               CONNECT
@@ -69,7 +86,7 @@ function Footer() {
 
             <ul>
               <li>
-                <a href="mailto:your.email@example.com">
+                <a href="mailto:gbandedesmondkator@gmail.com">
                   Email
                 </a>
               </li>
@@ -78,7 +95,7 @@ function Footer() {
                 <a
                   href="https://github.com/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   GitHub
                 </a>
@@ -88,7 +105,7 @@ function Footer() {
                 <a
                   href="https://www.linkedin.com/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   LinkedIn
                 </a>
@@ -96,6 +113,10 @@ function Footer() {
             </ul>
           </div>
         </div>
+
+        {/* =================================
+            FOOTER BOTTOM
+        ================================= */}
 
         <div className={styles.bottom}>
           <p>
@@ -105,8 +126,10 @@ function Footer() {
           <a
             href="#home"
             className={styles.backToTop}
+            aria-label="Back to top"
           >
-            Back to top ↑
+            Back to top
+            <span aria-hidden="true"> ↑</span>
           </a>
         </div>
       </div>

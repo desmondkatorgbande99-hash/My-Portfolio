@@ -19,8 +19,12 @@ function Projects() {
 
   const categories = [
     "All",
-    ...new Set(
-      projects.map((project) => project.category)
+    ...Array.from(
+      new Set(
+        projects.map(
+          (project) => project.category
+        )
+      )
     ),
   ];
 
@@ -32,6 +36,19 @@ function Projects() {
             project.category === activeCategory
         );
 
+  const handleCategoryChange = (
+    category: string
+  ) => {
+    setActiveCategory(category);
+
+    /*
+     * Close the lightbox when changing categories
+     * so a project from the previous filter cannot
+     * remain open.
+     */
+    setSelectedProject(null);
+  };
+
   return (
     <section
       id="projects"
@@ -39,46 +56,76 @@ function Projects() {
       aria-labelledby="projects-title"
     >
       <div className="container">
+
+        {/* =================================
+            PROJECT HEADER
+        ================================= */}
+
         <div className={styles.header}>
-          <p className={styles.eyebrow}>PROJECTS</p>
+          <p className={styles.eyebrow}>
+            PROJECTS
+          </p>
 
           <h2 id="projects-title">
             Selected work and things I've built.
           </h2>
 
           <p className={styles.intro}>
-            A selection of projects demonstrating my approach
-            to frontend development, backend development,
-            problem solving, and product-focused thinking.
+            A selection of projects demonstrating my
+            approach to frontend development, backend
+            development, problem solving, and
+            product-focused thinking.
           </p>
         </div>
 
+
+        {/* =================================
+            PROJECT FILTERS
+        ================================= */}
+
         <div
           className={styles.filters}
-          aria-label="Project filters"
+          role="group"
+          aria-label="Filter projects by category"
         >
-          {categories.map((category) => (
-            <button
-              key={category}
-              type="button"
-              className={`${styles.filterButton} ${
-                activeCategory === category
-                  ? styles.active
-                  : ""
-              }`}
-              onClick={() =>
-                setActiveCategory(category)
-              }
-              aria-pressed={
-                activeCategory === category
-              }
-            >
-              {category}
-            </button>
-          ))}
+          {categories.map((category) => {
+            const isActive =
+              activeCategory === category;
+
+            return (
+              <button
+                key={category}
+                type="button"
+                className={`${styles.filterButton} ${
+                  isActive
+                    ? styles.active
+                    : ""
+                }`}
+                onClick={() =>
+                  handleCategoryChange(category)
+                }
+                aria-pressed={isActive}
+              >
+                {category}
+              </button>
+            );
+          })}
         </div>
 
-        <div className={styles.grid}>
+
+        {/* =================================
+            PROJECT GRID
+        ================================= */}
+
+        <div
+          className={styles.grid}
+          aria-live="polite"
+          aria-label={`${filteredProjects.length} ${
+            filteredProjects.length === 1
+              ? "project"
+              : "projects"
+          } displayed`}
+        >
           {filteredProjects.map((project) => (
             <ProjectCard
               key={project.id}
@@ -88,18 +135,33 @@ function Projects() {
           ))}
         </div>
 
+
+        {/* =================================
+            EMPTY STATE
+        ================================= */}
+
         {filteredProjects.length === 0 && (
-          <p className={styles.emptyState}>
+          <p
+            className={styles.emptyState}
+            role="status"
+          >
             No projects found in this category.
           </p>
         )}
       </div>
 
+
+      {/* =================================
+          LIGHTBOX
+      ================================= */}
+
       {selectedProject && (
         <Lightbox
           image={selectedProject.image}
           title={selectedProject.title}
-          onClose={() => setSelectedProject(null)}
+          onClose={() =>
+            setSelectedProject(null)
+          }
         />
       )}
     </section>

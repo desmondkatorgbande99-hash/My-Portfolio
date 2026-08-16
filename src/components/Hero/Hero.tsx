@@ -3,12 +3,17 @@ import styles from "./Hero.module.css";
 function Hero() {
   return (
     <section
-      id="hero"
+      id="home"
       className={styles.hero}
       aria-labelledby="hero-title"
     >
       <div className="container">
         <div className={styles.heroContent}>
+
+          {/* =================================
+              HERO TEXT
+          ================================= */}
+
           <div className={styles.textContent}>
             <p className={styles.eyebrow}>
               SOFTWARE ENGINEER
@@ -23,6 +28,10 @@ function Hero() {
               applications with a focus on clean code,
               usability, and practical solutions.
             </p>
+
+            {/* =================================
+                HERO ACTIONS
+            ================================= */}
 
             <div className={styles.actions}>
               <a
@@ -40,16 +49,24 @@ function Hero() {
               </a>
 
               <a
-    href="/documents/Desmond-Gbande-Resume.pdf"
-    download="Desmond-Gbande-Resume.pdf"
-    className={styles.resumeButton}
-  >
-    Download Resume
-  </a>
+                href="/documents/Desmond-Gbande-Resume.pdf"
+                download="Desmond-Gbande-Resume.pdf"
+                className={styles.resumeButton}
+              >
+                Download Resume
+              </a>
             </div>
           </div>
 
-          <div className={styles.visual}>
+
+          {/* =================================
+              HERO VISUAL
+          ================================= */}
+
+          <div
+            className={styles.visual}
+            aria-hidden="true"
+          >
             <div className={styles.visualFrame}>
               <div className={styles.visualContent}>
                 <span className={styles.codeSymbol}>
@@ -64,6 +81,7 @@ function Hero() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

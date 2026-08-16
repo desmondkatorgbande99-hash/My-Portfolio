@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import type { MouseEvent } from "react";
 import styles from "./Lightbox.module.css";
 
 interface LightboxProps {
@@ -24,6 +25,9 @@ function Lightbox({
       handleKeyDown
     );
 
+    const previousOverflow =
+      document.body.style.overflow;
+
     document.body.style.overflow = "hidden";
 
     return () => {
@@ -32,12 +36,13 @@ function Lightbox({
         handleKeyDown
       );
 
-      document.body.style.overflow = "";
+      document.body.style.overflow =
+        previousOverflow;
     };
   }, [onClose]);
 
   const handleBackdropClick = (
-    event: React.MouseEvent<HTMLDivElement>
+    event: MouseEvent<HTMLDivElement>
   ) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -49,7 +54,7 @@ function Lightbox({
       className={styles.overlay}
       role="dialog"
       aria-modal="true"
-      aria-label={`${title} project preview`}
+      aria-labelledby="lightbox-title"
       onClick={handleBackdropClick}
     >
       <div className={styles.content}>
@@ -68,7 +73,12 @@ function Lightbox({
           className={styles.image}
         />
 
-        <p className={styles.title}>{title}</p>
+        <p
+          id="lightbox-title"
+          className={styles.title}
+        >
+          {title}
+        </p>
       </div>
     </div>
   );

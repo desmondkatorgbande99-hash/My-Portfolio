@@ -1,16 +1,29 @@
+/* =================================
+   HEADER
+================================= */
+
 .header {
   position: sticky;
 
   top: 0;
 
-  z-index: 100;
+  z-index: 1000;
 
   width: 100%;
 
   border-bottom: 1px solid var(--color-border);
 
   background-color: var(--color-background);
+
+  transition:
+    background-color var(--transition-normal),
+    border-color var(--transition-normal);
 }
+
+
+/* =================================
+   CONTAINER
+================================= */
 
 .container {
   position: relative;
@@ -32,7 +45,7 @@
 .logo {
   position: relative;
 
-  z-index: 102;
+  z-index: 1003;
 
   color: var(--color-text);
 
@@ -41,6 +54,8 @@
   font-weight: 800;
 
   letter-spacing: -0.04em;
+
+  transition: color var(--transition-fast);
 }
 
 .logo:hover {
@@ -49,7 +64,7 @@
 
 
 /* =================================
-   DESKTOP NAVIGATION
+   NAVIGATION
 ================================= */
 
 .navigation {
@@ -66,6 +81,12 @@
   align-items: center;
 
   gap: 32px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
 }
 
 .navigation a {
@@ -77,8 +98,7 @@
 
   font-weight: 600;
 
-  transition:
-    color var(--transition-fast);
+  transition: color var(--transition-fast);
 }
 
 .navigation a::after {
@@ -116,6 +136,19 @@
 
 
 /* =================================
+   ACTIONS
+================================= */
+
+.actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+/* =================================
    RESUME LINK
 ================================= */
 
@@ -143,8 +176,11 @@
   text-decoration: none;
 
   transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
     opacity var(--transition-fast),
-    transform var(--transition-fast);
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .resumeLink::after {
@@ -152,11 +188,11 @@
 }
 
 .resumeLink:hover {
-  color: var(--color-background) !important;
-
   opacity: 0.85;
 
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-button);
 }
 
 
@@ -169,7 +205,7 @@
 
   position: relative;
 
-  z-index: 102;
+  z-index: 1003;
 
   width: 44px;
 
@@ -230,7 +266,9 @@
 ================================= */
 
 .menuIcon.open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform:
+    translateY(7px)
+    rotate(45deg);
 }
 
 .menuIcon.open span:nth-child(2) {
@@ -238,15 +276,25 @@
 }
 
 .menuIcon.open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform:
+    translateY(-7px)
+    rotate(-45deg);
 }
 
 
 /* =================================
-   MOBILE NAVIGATION
+   MOBILE
 ================================= */
 
 @media (max-width: 768px) {
+  .header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+  }
+
   .container {
     min-height: 68px;
   }
@@ -255,14 +303,31 @@
     display: block;
   }
 
+
+  /* =================================
+     MOBILE NAVIGATION
+  ================================= */
+
   .navigation {
     position: fixed;
 
-    inset: 68px 0 0;
+    top: 68px;
 
-    z-index: 101;
+    right: 0;
 
-    display: block;
+    bottom: 0;
+
+    left: 0;
+
+    z-index: 1001;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    width: 100%;
 
     padding: 32px 24px;
 
@@ -272,12 +337,15 @@
 
     visibility: hidden;
 
-    transform: translateY(-12px);
+    overflow-y: auto;
+
+    transform: translateY(-10px);
 
     transition:
       opacity var(--transition-fast),
       visibility var(--transition-fast),
-      transform var(--transition-fast);
+      transform var(--transition-fast),
+      background-color var(--transition-normal);
   }
 
   .navigationOpen {
@@ -288,12 +356,17 @@
     transform: translateY(0);
   }
 
+
+  /* =================================
+     MOBILE NAVIGATION LINKS
+  ================================= */
+
   .navigation ul {
     display: flex;
 
     flex-direction: column;
 
-    align-items: flex-start;
+    align-items: stretch;
 
     gap: 0;
 
@@ -309,6 +382,8 @@
   .navigation a {
     display: block;
 
+    width: 100%;
+
     padding: 20px 0;
 
     color: var(--color-text);
@@ -323,28 +398,30 @@
   }
 
 
-  /* ===============================
-     MOBILE RESUME
-  =============================== */
+  /* =================================
+     MOBILE ACTIONS
+  ================================= */
 
-  .resumeLink {
+  .actions {
     display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: space-between;
 
     width: 100%;
 
-    box-sizing: border-box;
-
     margin-top: 24px;
-
-    padding: 14px 18px;
-
-    color: var(--color-background) !important;
-
-    text-align: center;
   }
 
-  .resumeLink:hover {
-    color: var(--color-background) !important;
+  .resumeLink {
+    flex: 1;
+
+    padding: 13px 18px;
+
+    text-align: center;
   }
 }
 
@@ -364,5 +441,22 @@
 
   .resumeLink {
     padding: 13px 16px;
+  }
+}
+
+
+/* =================================
+   REDUCED MOTION
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation {
+    transform: none;
+
+    transition: none;
+  }
+
+  .navigationOpen {
+    transform: none;
   }
 }

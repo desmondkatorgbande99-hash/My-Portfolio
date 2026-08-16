@@ -73,7 +73,9 @@ function Contact() {
     if (!formData.message.trim()) {
       newErrors.message =
         "Please enter a message.";
-    } else if (formData.message.trim().length < 10) {
+    } else if (
+      formData.message.trim().length < 10
+    ) {
       newErrors.message =
         "Your message should be at least 10 characters.";
     }
@@ -124,6 +126,11 @@ function Contact() {
     >
       <div className="container">
         <div className={styles.layout}>
+
+          {/* =================================
+              INTRODUCTION
+          ================================= */}
+
           <div className={styles.introduction}>
             <p className={styles.eyebrow}>
               CONTACT
@@ -140,18 +147,26 @@ function Contact() {
             </p>
 
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:gbandedesmondkator@gmail.com"
               className={styles.email}
             >
               gbandedesmondkator@gmail.com
             </a>
           </div>
 
+
+          {/* =================================
+              CONTACT FORM
+          ================================= */}
+
           <form
             className={styles.form}
             onSubmit={handleSubmit}
             noValidate
           >
+
+            {/* NAME */}
+
             <div className={styles.field}>
               <label htmlFor="name">
                 Name
@@ -184,6 +199,9 @@ function Contact() {
               )}
             </div>
 
+
+            {/* EMAIL */}
+
             <div className={styles.field}>
               <label htmlFor="email">
                 Email
@@ -202,7 +220,7 @@ function Contact() {
                     ? "email-error"
                     : undefined
                 }
-                placeholder="gbandedesmondkator@gmail.com"
+                placeholder="Your email address"
               />
 
               {errors.email && (
@@ -215,6 +233,9 @@ function Contact() {
                 </p>
               )}
             </div>
+
+
+            {/* MESSAGE */}
 
             <div className={styles.field}>
               <label htmlFor="message">
@@ -247,6 +268,9 @@ function Contact() {
               )}
             </div>
 
+
+            {/* SUBMIT */}
+
             <button
               type="submit"
               className={styles.submitButton}
@@ -257,6 +281,9 @@ function Contact() {
                 : "Send Message"}
             </button>
 
+
+            {/* SUCCESS */}
+
             {isSubmitted && (
               <p
                 className={styles.success}
@@ -266,6 +293,7 @@ function Contact() {
                 Thank you for reaching out.
               </p>
             )}
+
           </form>
         </div>
       </div>

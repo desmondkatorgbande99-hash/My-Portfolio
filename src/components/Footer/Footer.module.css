@@ -1,7 +1,41 @@
+/* =================================
+   FOOTER
+================================= */
+
 .footer {
+  width: 100%;
+
   border-top: 1px solid var(--color-border);
 
   background-color: var(--color-background);
+
+  color: var(--color-text);
+
+  transition:
+    background-color var(--transition-normal),
+    border-color var(--transition-normal),
+    color var(--transition-normal);
+
+  animation: footerFadeUp 0.7s ease both;
+}
+
+
+/* =================================
+   FOOTER ANIMATION
+================================= */
+
+@keyframes footerFadeUp {
+  from {
+    opacity: 0;
+
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
 }
 
 
@@ -17,8 +51,13 @@
 
   gap: 60px;
 
-  padding-block: 70px;
+  padding-block: 64px;
 }
+
+
+/* =================================
+   INTRODUCTION
+================================= */
 
 .introduction {
   max-width: 420px;
@@ -27,17 +66,31 @@
 .logo {
   display: inline-block;
 
-  margin-bottom: 18px;
+  margin-bottom: 16px;
+
+  color: var(--color-text);
 
   font-size: var(--font-size-lg);
 
   font-weight: 800;
 
   letter-spacing: -0.04em;
+
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.logo:hover {
+  opacity: 0.7;
+
+  transform: translateY(-1px);
 }
 
 .introduction p {
   max-width: 380px;
+
+  margin: 0;
 
   color: var(--color-text-muted);
 
@@ -52,7 +105,7 @@
 ================================= */
 
 .navigationTitle {
-  margin-bottom: 18px;
+  margin: 0 0 18px;
 
   color: var(--color-text-muted);
 
@@ -61,6 +114,8 @@
   font-weight: 700;
 
   letter-spacing: 0.15em;
+
+  text-transform: uppercase;
 }
 
 .navigation ul,
@@ -70,21 +125,67 @@
   flex-direction: column;
 
   gap: 12px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
 }
 
 .navigation a,
 .connect a {
+  position: relative;
+
+  display: inline-block;
+
+  width: fit-content;
+
   color: var(--color-text);
 
   font-size: var(--font-size-sm);
 
   transition:
-    color var(--transition-fast);
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.navigation a::after,
+.connect a::after {
+  position: absolute;
+
+  right: 0;
+
+  bottom: -4px;
+
+  left: 0;
+
+  height: 1px;
+
+  background-color: var(--color-text);
+
+  content: "";
+
+  transform: scaleX(0);
+
+  transform-origin: right;
+
+  transition:
+    transform var(--transition-fast);
 }
 
 .navigation a:hover,
 .connect a:hover {
-  color: var(--color-text-muted);
+  color: var(--color-text);
+  
+  transform: translateX(2px);
+}
+
+.navigation a:hover::after,
+.connect a:hover::after {
+  transform: scaleX(1);
+
+  transform-origin: left;
 }
 
 
@@ -101,29 +202,52 @@
 
   gap: 20px;
 
-  padding-block: 22px;
+  padding-block: 20px;
 
   border-top: 1px solid var(--color-border);
 }
 
 .bottom p {
+  margin: 0;
+
   color: var(--color-text-muted);
 
   font-size: var(--font-size-xs);
 }
 
 .backToTop {
+  display: inline-flex;
+
+  align-items: center;
+
+  color: var(--color-text);
+
   font-size: var(--font-size-xs);
 
   font-weight: 700;
 
   white-space: nowrap;
+
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .backToTop:hover {
-  text-decoration: underline;
+  opacity: 0.7;
 
-  text-underline-offset: 4px;
+  transform: translateY(-2px);
+}
+
+.backToTop:focus-visible,
+.logo:focus-visible,
+.navigation a:focus-visible,
+.connect a:focus-visible {
+  outline: 2px solid var(--color-text);
+
+  outline-offset: 4px;
+
+  border-radius: 2px;
 }
 
 
@@ -133,11 +257,12 @@
 
 @media (max-width: 900px) {
   .top {
-    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-columns:
+      1.5fr 1fr 1fr;
 
     gap: 40px;
 
-    padding-block: 60px;
+    padding-block: 56px;
   }
 }
 
@@ -150,12 +275,16 @@
   .top {
     grid-template-columns: 1fr;
 
-    gap: 40px;
+    gap: 36px;
 
-    padding-block: 50px;
+    padding-block: 48px;
   }
 
   .introduction {
+    max-width: 100%;
+  }
+
+  .introduction p {
     max-width: 100%;
   }
 
@@ -164,6 +293,51 @@
 
     align-items: flex-start;
 
-    gap: 14px;
+    gap: 12px;
+
+    padding-block: 18px;
+  }
+}
+
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+@media (max-width: 400px) {
+  .top {
+    gap: 32px;
+
+    padding-block: 42px;
+  }
+
+  .navigation ul,
+  .connect ul {
+    gap: 10px;
+  }
+}
+
+
+/* =================================
+   REDUCED MOTION
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .footer {
+    animation: none;
+  }
+
+  .logo,
+  .navigation a,
+  .connect a,
+  .backToTop {
+    transition: none;
+  }
+
+  .logo:hover,
+  .navigation a:hover,
+  .connect a:hover,
+  .backToTop:hover {
+    transform: none;
   }
 }

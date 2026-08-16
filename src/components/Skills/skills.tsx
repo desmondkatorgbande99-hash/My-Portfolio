@@ -71,7 +71,10 @@ function Skills() {
               key={group.number}
               className={styles.card}
             >
-              <span className={styles.number}>
+              <span
+                className={styles.number}
+                aria-hidden="true"
+              >
                 {group.number}
               </span>
 
