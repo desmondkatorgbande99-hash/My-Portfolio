@@ -15,6 +15,10 @@ function Hero() {
           ================================= */}
 
           <div className={styles.textContent}>
+            <p className={styles.name}>
+              GBANDE DESMOND KATOR
+            </p>
+
             <p className={styles.eyebrow}>
               SOFTWARE ENGINEER
             </p>
@@ -58,27 +62,17 @@ function Hero() {
             </div>
           </div>
 
-
           {/* =================================
-              HERO VISUAL
+              HERO IMAGE
           ================================= */}
 
-          <div
-            className={styles.visual}
-            aria-hidden="true"
-          >
-            <div className={styles.visualFrame}>
-              <div className={styles.visualContent}>
-                <span className={styles.codeSymbol}>
-                  {"</>"}
-                </span>
-
-                <span className={styles.visualText}>
-                  SOFTWARE
-                  <br />
-                  ENGINEER
-                </span>
-              </div>
+          <div className={styles.visual}>
+            <div className={styles.imageFrame}>
+              <img
+                src="/public/images/Desmond-hero.png"
+                alt="Gbande Desmond Kator, Software Engineer"
+                className={styles.heroImage}
+              />
             </div>
           </div>
 
