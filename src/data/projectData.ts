@@ -59,7 +59,7 @@ export const projects: Project[] = [
     ],
     image: "/projects/portfolio.webp",
     githubUrl: "https://github.com/desmondkatorgbande99-hash/My-Portfolio",
-    liveUrl: "",
+    liveUrl: "https://my-portfolio-indol-chi-67.vercel.app",
   },
 
   {
