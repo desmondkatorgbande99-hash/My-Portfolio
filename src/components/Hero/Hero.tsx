@@ -69,7 +69,7 @@ function Hero() {
           <div className={styles.visual}>
             <div className={styles.imageFrame}>
               <img
-                src="/public/images/Desmond-hero.png"
+                src="/images/Desmond-hero.png"
                 alt="Gbande Desmond Kator, Software Engineer"
                 className={styles.heroImage}
               />

@@ -24,8 +24,8 @@ export const projects: Project[] = [
       "Express.js",
     ],
     image: "/projects/binary-color-generator.webp",
-    githubUrl: "",
-    liveUrl: "",
+    githubUrl: "https://github.com/desmondkatorgbande99-hash/Project-Binary-Color-Generator",
+    liveUrl: "https://binary-color-generator.vercel.app",
   },
 
   {
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     ],
     image: "/projects/job-board.webp",
     githubUrl: "https://github.com/desmondkatorgbande99-hash/SkillLoom-Project--Artisan-Graduate-Job-Portal-",
-    liveUrl: "",
+    liveUrl: "https://skill-loom-project-artisan-graduate-eight.vercel.app",
   },
 
   {
@@ -58,7 +58,7 @@ export const projects: Project[] = [
       "Vite",
     ],
     image: "/projects/portfolio.webp",
-    githubUrl: "",
+    githubUrl: "https://github.com/desmondkatorgbande99-hash/My-Portfolio",
     liveUrl: "",
   },
 

@@ -5,58 +5,32 @@ type Theme = "light" | "dark";
 
 const THEME_STORAGE_KEY = "portfolio-theme";
 
+function getInitialTheme(): Theme {
+  if (typeof window === "undefined") {
+    return "light";
+  }
+
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  if (savedTheme === "light" || savedTheme === "dark") {
+    return savedTheme;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
 function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem(
-      THEME_STORAGE_KEY
-    );
-
-    if (
-      savedTheme === "light" ||
-      savedTheme === "dark"
-    ) {
-      setTheme(savedTheme);
-
-      document.documentElement.setAttribute(
-        "data-theme",
-        savedTheme
-      );
-
-      return;
-    }
-
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    const systemTheme: Theme = prefersDark
-      ? "dark"
-      : "light";
-
-    setTheme(systemTheme);
-
-    document.documentElement.setAttribute(
-      "data-theme",
-      systemTheme
-    );
-  }, []);
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
 
   const toggleTheme = () => {
-    const newTheme: Theme =
-      theme === "light" ? "dark" : "light";
-
-    setTheme(newTheme);
-
-    document.documentElement.setAttribute(
-      "data-theme",
-      newTheme
-    );
-
-    localStorage.setItem(
-      THEME_STORAGE_KEY,
-      newTheme
+    setTheme((previousTheme) =>
+      previousTheme === "light" ? "dark" : "light"
     );
   };
 
